@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h2>Best Books!</h2>
+        <ul>
+            <li> <a href="../index">Home</a> </li>
+            <li><a href="./new">Search by google API</a></li>
+        </ul>
+       
+    </header>
+    <main>
+        <h3 id="showName">Search Results</h3>
+    <% bookDetails.forEach(element =>{%> 
+        <div>
+        <img src="<%= element.image %> " alt="">
+        <h3><%= element.title %> </h3>
+        <h4><%= element.author %> </h4>
+        <p><%= element.description  %>  </p>
+         </div>
+        <% }) %> 
+    </main>
+    <script>
+         function myFunction() {
+    let x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+      x.style.display = "none";
+         } else {
+      x.style.display = "block";
+      }
+        }
+
+    </script>
+</body>
+</html>
