@@ -20,7 +20,9 @@ header{
     height: 50px;
     background-color: black;
     opacity: .7;
-    line-height: 50px
+    line-height: 50px;
+    display: flex;
+    justify-content: space-around;
 }
 
 div{
@@ -56,7 +58,63 @@ main div h4{
 main div p{
     line-height: 20px;
 }
+form{
+    margin-top: 30px;
+    text-align: center;
+    line-height: 30px;
+   
+}
+input[type=text], #author, #title {
+    background-color:white;
+    border: none;
+    color: white;
+    padding: 16px 20px;
+    text-decoration: none;
+    margin: 4px 0px;
+    cursor: pointer;
+    align-items: center;
+    width: 100%;
+   
+  }
+  #author, #title{
+    
+      height: 20px;
+      color: white;
+  }
+  
 
+
+  button{
+      width: 80%;
+      background-color: black;
+      color: white;
+      border: 0;
+      align-items: center;
+      text-align: center;
+      height: 35px
+  }
+  li{
+      display: inline;
+      color: white;
+      justify-content: space-between;
+     
+  }
+  a{
+      text-decoration: none;
+      color: white;
+      margin: 0 20px
+  }
+  a:hover {
+    background-color: red;
+  }
+  
+  #error{
+      width: 100%;
+  }
+  main h1{
+      text-align: center;
+      font-size: 72px;
+  }
 
 @import 'modules.css';
 @import 'layout.css';;

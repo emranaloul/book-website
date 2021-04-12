@@ -49,6 +49,10 @@ function Book( bookDetails ){
 
 }
 
+server.get( '*', ( req,res )=>{
+  res.render( 'pages/error' );
+} );
+
 server.listen( PORT, ()=>{
   console.log( `listening on PORT ${PORT}` );
 } );
