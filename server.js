@@ -8,13 +8,15 @@ require( 'dotenv' ).config();
 const cors = require( 'cors' );
 const pg = require( 'pg' );
 
+
 const server = express();
 server.use( cors() );
 const PORT = process.env.PORT || 3000;
 server.set( 'view engine', 'ejs' );
 server.use( express.static( './public' ) );
 
-server.get( '/searches/show', dataHandler );
+server.use( express.urlencoded( {extended:true} ) );
+server.post( '/searches/show', dataHandler );
 
 server.get( '/', ( req,res )=>{
   res.render( './pages/index' );
@@ -27,8 +29,8 @@ server.get( '/searches/new', ( req,res )=>{
 
 function dataHandler( req,res ) {
 
-  let search = req.query.authorOrTitle;
-  let select = req.query.select;
+  let search = req.body.authorOrTitle;
+  let select = req.body.select;
   let URL = `https://www.googleapis.com/books/v1/volumes?q=+in${select}:${search}`;
 
   superagent.get( URL )
@@ -43,9 +45,9 @@ function dataHandler( req,res ) {
 function Book( bookDetails ){
 
   this.title = bookDetails.volumeInfo.title;
-  this.author = bookDetails.volumeInfo.authors[0];
+  this.author = bookDetails.volumeInfo.authors;
   this.description = bookDetails.volumeInfo.description;
-  this.image = bookDetails.volumeInfo.imageLinks.thumbnail;
+  this.image = ( bookDetails.volumeInfo.imageLinks ) ? bookDetails.volumeInfo.imageLinks.thumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
 
 }
 
