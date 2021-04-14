@@ -9,12 +9,28 @@
 </head>
 <body>
     <header><h2>Best Books!</h2>
+        
         <ul>
             <li> <a href="/">Home</a> </li>
             <li><a href="/searches/new">Search by google API</a></li>
         </ul>
     </header>
   
-    
+    <main>
+        <h3 id="showName">Search Results</h3>
+
+        <h3>You Have <%= (bookDetails.length)  %> Saved Books  </h3>
+
+        <% bookDetails.forEach(element =>{%> 
+        <div>
+        <img src="<%= element.image %> " alt="">
+        <h3><%= element.title %> </h3>
+        <h4><%= element.author %> </h4>
+        <h5><%= element.isbn %> </h5>
+        <p><%= element.description  %>  </p>
+         </div>
+        <% }) %> 
+    </main>
+
 </body>
 </html>

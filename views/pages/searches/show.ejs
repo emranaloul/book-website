@@ -18,12 +18,21 @@
     </header>
     <main>
         <h3 id="showName">Search Results</h3>
-    <% bookDetails.forEach(element =>{%> 
+        <% bookDetails.forEach(element =>{%> 
         <div>
+            <form action="/books/detail" method="POST">
         <img src="<%= element.image %> " alt="">
+        <input type="hidden" name="image" value="<%= element.image %>">
         <h3><%= element.title %> </h3>
+        <input type="hidden" name="title" value="<%= element.title %>">
         <h4><%= element.author %> </h4>
+        <input type="hidden" name="author" value="<%= element.author %>">
+        <h5><%= element.isbn %> </h5>
+        <input type="hidden" name="isbn" value="<%= element.isbn %>">
         <p><%= element.description  %>  </p>
+        <input type="hidden" name="description" value="<%= element.description  %>">
+        <button>select this book</button>
+        </form>
          </div>
         <% }) %> 
     </main>

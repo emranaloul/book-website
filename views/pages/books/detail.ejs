@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/base.css">
+</head>
+
+<body>
+    <header><h2>Best Books!</h2>
+        
+        <ul>
+            <li> <a href="/">Home</a> </li>
+            <li><a href="/searches/new">Search by google API</a></li>
+        </ul>
+    </header>
+    <main><div>
+        <img src="<%= bookDetails.image %> " alt="">
+        <h3><%= bookDetails.title %> </h3>
+        <h4><%= bookDetails.author %> </h4>
+        <h5><%= bookDetails.isbn %> </h5>
+        <p><%= bookDetails.description  %>  </p>
+    </div></main>
+</body>
+</html>
