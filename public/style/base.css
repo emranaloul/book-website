@@ -67,7 +67,7 @@ form{
 input[type=text], #author, #title {
     background-color:white;
     border: none;
-    color: white;
+    color:black;
     padding: 16px 20px;
     text-decoration: none;
     margin: 4px 0px;
