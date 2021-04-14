@@ -12,7 +12,7 @@
         <h2>Best Books!</h2>
         <ul>
             <li> <a href="/">Home</a> </li>
-            <li><a href="/new">Search by google API</a></li>
+            <li><a href="/searches">Search by google API</a></li>
         </ul>
        
     </header>
@@ -20,17 +20,17 @@
         <h3 id="showName">Search Results</h3>
         <% bookDetails.forEach(element =>{%> 
         <div>
-            <form action="/books/detail" method="POST">
+            <form action="/books" method="POST">
         <img src="<%= element.image %> " alt="">
         <input type="hidden" name="image" value="<%= element.image %>">
         <h3><%= element.title %> </h3>
         <input type="hidden" name="title" value="<%= element.title %>">
         <h4><%= element.author %> </h4>
         <input type="hidden" name="author" value="<%= element.author %>">
-        <h5><%= element.isbn %> </h5>
         <input type="hidden" name="isbn" value="<%= element.isbn %>">
-        <p><%= element.description  %>  </p>
         <input type="hidden" name="description" value="<%= element.description  %>">
+        <!-- <h5><%= element.isbn %> </h5> -->
+        <!-- <p><%= element.description  %>  </p> -->
         <button>select this book</button>
         </form>
          </div>

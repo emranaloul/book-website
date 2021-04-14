@@ -16,8 +16,8 @@ const PORT = process.env.PORT || 3000;
 server.set( 'view engine', 'ejs' );
 server.use( express.static( './public' ) );
 
-const client = new pg.Client( process.env.DATABASE_URL );
-// const client = new pg.Client( { connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false}} );
+// const client = new pg.Client( process.env.DATABASE_URL );
+const client = new pg.Client( { connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false}} );
 
 
 server.use( express.urlencoded( {extended:true} ) );
@@ -31,12 +31,12 @@ server.get( '/', ( req,res )=>{
     } );
 } );
 
-server.get( '/searches/new', ( req,res )=>{
+server.get( '/searches', ( req,res )=>{
   res.render( './pages/searches/new' );
 
 } );
 
-server.post( '/books/detail', ( req,res )=>{
+server.post( '/books', ( req,res )=>{
   let {title,author,isbn,description,image} = req.body;
   let SQL = `INSERT INTO books (title,author,isbn,description,image) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
   // let safeValues =
@@ -44,22 +44,21 @@ server.post( '/books/detail', ( req,res )=>{
   console.log( safeValue );
   client.query( SQL, safeValue )
     .then( result =>{
-
-      res.render( 'pages/books/detail', {bookDetails:result.rows[0]} );
+      res.redirect(`/books/${result.rows[0].id}`);
+      // res.render( 'pages/books/detail', {bookDetails:result.rows[0]} );
     } );
 } );
 
-// server.get( '/books/show', ( req,res )=>{
-//   console.log(req.query);
-//   let SQL = `SELECT * FROM books;`;
-//   let safevalue = [req.params];
-//   console.log(safevalue);
-//   client.query( SQL )
-//     .then( result =>{
-//       res.render( 'pages/books/detail', {bookDetails:result.rows[0]} );
+server.get( '/books/:id', ( req,res )=>{
+  console.log(req.params);
+  let SQL = `SELECT * FROM books WHERE id=$1;`;
+  let safeValue = [req.params.id]
+  client.query( SQL , safeValue )
+    .then( result =>{
+      res.render( 'pages/books/detail', {bookDetails:result.rows[0]} );
 
-//     } );
-// } );
+    } );
+} );
 
 // server.get( '/books/show', ( req,res )=>{
 //   res.render( 'pages/books/detail' );
