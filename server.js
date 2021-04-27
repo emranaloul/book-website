@@ -108,9 +108,9 @@ server.delete('/deletebook/:id', (req,res)=>{
   let SQL =`DELETE FROM books WHERE id=$1;`;
   let safeValue = [req.params.id];
   client.query(SQL, safeValue)
-  .then(()=>{
-    res.redirect('/');
-  })
+    .then(()=>{
+      res.redirect('/');
+    })
 })
 
 server.get( '*', ( req,res )=>{
